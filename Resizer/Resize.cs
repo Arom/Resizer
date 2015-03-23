@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,27 +12,98 @@ namespace Resizer
 {
     class Resize
     {
-        public Bitmap ResizeImage(Image image, int width, int height)
+        string DEFAULT_SAVE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        private string getFileName(string path)
         {
-            var destRect = new Rectangle(0, 0, width, height);
-            var resizedImage = new Bitmap(width, height);
-            return ProcessImage(resizedImage, image, destRect);
+            
+            return path.Substring(path.LastIndexOf("\\")).Insert(1, "Resized");
         }
-        public Bitmap ResizeImagePercent(Image image, int percent)
+
+        private ImageFormat getFileExtension(string path)
         {
-            double resizePercent = (double)percent / 100.00;
-            int width = (int)Math.Round((double)image.Width * resizePercent);
+            string ext = Path.GetExtension(path);
+            if (String.IsNullOrEmpty(ext))
+            {
+                throw new ArgumentException(
+                    String.Format("Cannot find extension for file {0}", path));
+            }
+            switch (ext.ToLower())
+            {
+                case @".bmp":
+                    return ImageFormat.Bmp;
 
-            int height = (int)Math.Round((double)image.Height * resizePercent);
-            var destRect = new Rectangle(0, 0, width, height);
-            var resizedImage = new Bitmap(width, height);
+                case @".gif":
+                    return ImageFormat.Gif;
 
-            return ProcessImage(resizedImage, image, destRect);
+                case @".ico":
+                    return ImageFormat.Icon;
+
+                case @".jpg":
+                case @".jpeg":
+                    return ImageFormat.Jpeg;
+
+                case @".png":
+                    return ImageFormat.Png;
+
+                case @".tif":
+                case @".tiff":
+                    return ImageFormat.Tiff;
+
+                case @".wmf":
+                    return ImageFormat.Wmf;
+
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public void ResizeImage(string imgPath, string destPath, int width, int height)
+        {
+            if (String.IsNullOrEmpty(destPath))
+            {
+                destPath = DEFAULT_SAVE_PATH;
+            }
+            try
+            {
+                Image img = Image.FromFile(imgPath);
+               
+                var destRect = new Rectangle(0, 0, width, height);
+                var resizedImage = new Bitmap(width, height);
+                string destination = String.Format("{0}{1}", destPath, getFileName(imgPath));
+                ProcessImage(resizedImage, img, destRect).Save(destination, getFileExtension(imgPath));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(String.Format("{0} is not an image.", imgPath));
+            }
+
+        }
+        public void ResizeImagePercent(string imgPath, string destPath, int percent)
+        {
+            try
+            {
+                var img = Image.FromFile(imgPath);
+                double resizePercent = (double)percent / 100.00;
+                int width = (int)Math.Round((double)img.Width * resizePercent);
+
+                int height = (int)Math.Round((double)img.Height * resizePercent);
+                var destRect = new Rectangle(0, 0, width, height);
+                var resizedImage = new Bitmap(width, height);
+
+                ProcessImage(resizedImage, img, destRect);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(String.Format("{0} is not an image.", imgPath));
+            }
+
         }
         public Bitmap ProcessImage(Bitmap resizedImage, Image image, Rectangle destRect)
         {
             //Maintains the DPI of the image
-
             resizedImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
             using (var graphics = Graphics.FromImage(resizedImage))
