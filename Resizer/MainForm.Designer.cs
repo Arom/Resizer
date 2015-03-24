@@ -51,7 +51,7 @@
             this.btnSelectImages.Location = new System.Drawing.Point(234, 177);
             this.btnSelectImages.Name = "btnSelectImages";
             this.btnSelectImages.Size = new System.Drawing.Size(98, 23);
-            this.btnSelectImages.TabIndex = 1;
+            this.btnSelectImages.TabIndex = 5;
             this.btnSelectImages.Text = "Select Images";
             this.btnSelectImages.UseVisualStyleBackColor = true;
             this.btnSelectImages.Click += new System.EventHandler(this.btnSelectImages_Click);
@@ -128,14 +128,14 @@
             this.txtHeight.Location = new System.Drawing.Point(136, 19);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(35, 20);
-            this.txtHeight.TabIndex = 4;
+            this.txtHeight.TabIndex = 3;
             // 
             // txtWidth
             // 
             this.txtWidth.Location = new System.Drawing.Point(65, 19);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(39, 20);
-            this.txtWidth.TabIndex = 3;
+            this.txtWidth.TabIndex = 2;
             // 
             // radioPercent
             // 
@@ -171,7 +171,7 @@
             this.btnSavePath.Location = new System.Drawing.Point(205, 2);
             this.btnSavePath.Name = "btnSavePath";
             this.btnSavePath.Size = new System.Drawing.Size(154, 23);
-            this.btnSavePath.TabIndex = 4;
+            this.btnSavePath.TabIndex = 1;
             this.btnSavePath.Text = "Select Save Location";
             this.btnSavePath.UseVisualStyleBackColor = true;
             this.btnSavePath.Click += new System.EventHandler(this.btnSavePath_Click);
