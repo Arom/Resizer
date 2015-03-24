@@ -56,6 +56,17 @@ namespace Resizer
                     throw new NotImplementedException();
             }
         }
+        public void saveImage(Bitmap img, string destPath, ImageFormat ext)
+        {
+            try
+            {
+                img.Save(destPath, ext);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(String.Format("Save error : {0}", ex.ToString()));
+            }
+        }
         public void ResizeImage(string imgPath, string destPath, int width, int height)
         {
             if (String.IsNullOrEmpty(destPath))
@@ -69,7 +80,8 @@ namespace Resizer
                 var destRect = new Rectangle(0, 0, width, height);
                 var resizedImage = new Bitmap(width, height);
                 string destination = String.Format("{0}{1}", destPath, getFileName(imgPath));
-                ProcessImage(resizedImage, img, destRect).Save(destination, getFileExtension(imgPath));
+                var processedImg = ProcessImage(resizedImage, img, destRect); ;
+                saveImage(processedImg, destination, getFileExtension(imgPath));
 
             }
             catch (Exception ex)
