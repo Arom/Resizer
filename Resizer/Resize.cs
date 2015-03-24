@@ -15,7 +15,6 @@ namespace Resizer
         string DEFAULT_SAVE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
         private string getFileName(string path)
         {
-            
             return path.Substring(path.LastIndexOf("\\")).Insert(1, "Resized");
         }
 
@@ -67,7 +66,7 @@ namespace Resizer
                 Console.WriteLine(String.Format("Save error : {0}", ex.ToString()));
             }
         }
-        public void ResizeImage(string imgPath, string destPath, int width, int height)
+        public void ResizeImage(string imgPath, int width, int height, string destPath = null)
         {
             if (String.IsNullOrEmpty(destPath))
             {
@@ -76,12 +75,15 @@ namespace Resizer
             try
             {
                 Image img = Image.FromFile(imgPath);
-               
+
                 var destRect = new Rectangle(0, 0, width, height);
-                var resizedImage = new Bitmap(width, height);
+                var toResize = new Bitmap(width, height);
+
+                var resizedImg = ProcessImage(toResize, img, destRect); ;
+
+
                 string destination = String.Format("{0}{1}", destPath, getFileName(imgPath));
-                var processedImg = ProcessImage(resizedImage, img, destRect); ;
-                saveImage(processedImg, destination, getFileExtension(imgPath));
+                saveImage(resizedImg, destination, getFileExtension(imgPath));
 
             }
             catch (Exception ex)
@@ -91,19 +93,27 @@ namespace Resizer
             }
 
         }
-        public void ResizeImagePercent(string imgPath, string destPath, int percent)
+        public void ResizeImagePercent(string imgPath, int percent, string destPath = null)
         {
+            if (String.IsNullOrEmpty(destPath))
+            {
+                destPath = DEFAULT_SAVE_PATH;
+            }
             try
             {
                 var img = Image.FromFile(imgPath);
+
                 double resizePercent = (double)percent / 100.00;
                 int width = (int)Math.Round((double)img.Width * resizePercent);
-
                 int height = (int)Math.Round((double)img.Height * resizePercent);
                 var destRect = new Rectangle(0, 0, width, height);
-                var resizedImage = new Bitmap(width, height);
+                var toResize = new Bitmap(width, height);
 
-                ProcessImage(resizedImage, img, destRect);
+                var resizedImg = ProcessImage(toResize, img, destRect);
+
+                string destination = String.Format("{0}{1}", destPath, getFileName(imgPath));
+                saveImage(resizedImg, destination, getFileExtension(imgPath));
+
 
             }
             catch (Exception ex)

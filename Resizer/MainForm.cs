@@ -27,13 +27,7 @@ namespace Resizer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             resize = new Resize();
-            // Image image = Image.FromFile("C:\\Users\\Chris\\Desktop\\4.jpg");
-            // Bitmap resized = resize.ResizeImage(image, 319, 319);
-            //  Bitmap resized = resize.ResizeImagePercent(image, 139);
-            //resized.Save("C:\\Users\\Chris\\Desktop\\4resized.jpg", ImageFormat.Jpeg);
-
         }
 
         private bool isNumber(string text)
@@ -75,16 +69,16 @@ namespace Resizer
                     if (radioPercent.Checked)
                     {
                         
-                        Array.ForEach(files, f => resize.ResizeImagePercent(f,
-                            savePath,
-                            Convert.ToInt32(txtPercent.Text)));
+                        Array.ForEach(files, f => resize.ResizeImagePercent(f, 
+                            Convert.ToInt32(txtPercent.Text),
+                            savePath));
                     }
                     else if (radioPixels.Checked)
                     {
                         Array.ForEach(files, f => resize.ResizeImage(f,
-                            savePath,
                             Convert.ToInt32(txtWidth.Text),
-                            Convert.ToInt32(txtHeight.Text)));
+                            Convert.ToInt32(txtHeight.Text),
+                            savePath));
                     }
                 }
             }
