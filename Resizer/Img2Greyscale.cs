@@ -10,9 +10,10 @@ namespace Resizer
     class Img2Greyscale
     {
 
-        internal Image Convert(System.Drawing.Image img)
+        internal Image Convert(Image img)
         {
             Bitmap bmp = new Bitmap(img);
+            
                 for (int i = 0; i < bmp.Width; i++)
                 {
                     for (int j = 0; j < bmp.Height; j++)
@@ -27,8 +28,7 @@ namespace Resizer
 
         private Color ConvertPixel(Color clr, int mode)
         {
-            Color newClr = Color.FromArgb((clr.R + clr.G + clr.B) / 3, (clr.R + clr.G + clr.B) / 3, (clr.R + clr.G + clr.B) / 3);
-            return newClr;
+           return Color.FromArgb((clr.R + clr.G + clr.B) / 3, (clr.R + clr.G + clr.B) / 3, (clr.R + clr.G + clr.B) / 3);
         }
     }
 }
