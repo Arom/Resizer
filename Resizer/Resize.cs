@@ -93,7 +93,7 @@ namespace Resizer
             }
 
         }
-        public void ResizeImagePercent(string imgPath, int percent, string destPath = null)
+        public Image ResizeImagePercent(string imgPath, int percent, string destPath = null)
         {
             if (String.IsNullOrEmpty(destPath))
             {
@@ -114,12 +114,14 @@ namespace Resizer
                 string destination = String.Format("{0}{1}", destPath, getFileName(imgPath));
                 saveImage(resizedImg, destination, getFileExtension(imgPath));
 
-
+                return resizedImg;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 Console.WriteLine(String.Format("{0} is not an image.", imgPath));
+                Image image = null;
+                return image;
             }
 
         }

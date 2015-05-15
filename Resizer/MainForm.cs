@@ -14,9 +14,14 @@ namespace Resizer
 {
     public partial class MainForm : Form
     {
+        Image image;
         string[] files;
+        string file;
         Resize resize;
+        Img2Greyscale img2grey;
         string savePath;
+        Image img;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +33,7 @@ namespace Resizer
         private void Form1_Load(object sender, EventArgs e)
         {
             resize = new Resize();
+            img2grey = new Img2Greyscale();
         }
 
         private bool isNumber(string text)
@@ -68,10 +74,11 @@ namespace Resizer
 
                     if (radioPercent.Checked)
                     {
-                        
-                        Array.ForEach(files, f => resize.ResizeImagePercent(f, 
+
+                        image = resize.ResizeImagePercent(files[0], 
                             Convert.ToInt32(txtPercent.Text),
-                            savePath));
+                            savePath);
+                        pictureBox1.Image = image;
                     }
                     else if (radioPixels.Checked)
                     {
@@ -96,6 +103,24 @@ namespace Resizer
             {
                 txtSavePath.Text = savePath = savePathBrowser.SelectedPath;
             }
+        }
+
+        private void loadImageButton(object sender, EventArgs e)
+        {
+            DialogResult result = fileBrowser.ShowDialog();
+            if (result.Equals(DialogResult.OK))
+            {
+                file = fileBrowser.FileName;
+                img = Image.FromFile(file);
+                pictureBox1.Image = img;
+            }
+
+        }
+
+        private void img2GreyscaleButton(object sender, EventArgs e)
+        {
+            img=img2grey.Convert(img);
+            pictureBox1.Image = img;
         }
     }
 }

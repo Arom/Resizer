@@ -43,12 +43,16 @@
             this.txtSavePath = new System.Windows.Forms.TextBox();
             this.btnSavePath = new System.Windows.Forms.Button();
             this.savePathBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.loadButton = new System.Windows.Forms.Button();
+            this.img2greyscale1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSelectImages
             // 
-            this.btnSelectImages.Location = new System.Drawing.Point(234, 177);
+            this.btnSelectImages.Location = new System.Drawing.Point(117, 168);
             this.btnSelectImages.Name = "btnSelectImages";
             this.btnSelectImages.Size = new System.Drawing.Size(98, 23);
             this.btnSelectImages.TabIndex = 5;
@@ -71,7 +75,7 @@
             this.groupBox1.Controls.Add(this.txtWidth);
             this.groupBox1.Controls.Add(this.radioPercent);
             this.groupBox1.Controls.Add(this.radioPixels);
-            this.groupBox1.Location = new System.Drawing.Point(182, 66);
+            this.groupBox1.Location = new System.Drawing.Point(55, 57);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 105);
             this.groupBox1.TabIndex = 2;
@@ -161,14 +165,14 @@
             // 
             // txtSavePath
             // 
-            this.txtSavePath.Location = new System.Drawing.Point(49, 31);
+            this.txtSavePath.Location = new System.Drawing.Point(26, 31);
             this.txtSavePath.Name = "txtSavePath";
-            this.txtSavePath.Size = new System.Drawing.Size(476, 20);
+            this.txtSavePath.Size = new System.Drawing.Size(272, 20);
             this.txtSavePath.TabIndex = 3;
             // 
             // btnSavePath
             // 
-            this.btnSavePath.Location = new System.Drawing.Point(205, 2);
+            this.btnSavePath.Location = new System.Drawing.Point(84, 2);
             this.btnSavePath.Name = "btnSavePath";
             this.btnSavePath.Size = new System.Drawing.Size(154, 23);
             this.btnSavePath.TabIndex = 1;
@@ -176,11 +180,43 @@
             this.btnSavePath.UseVisualStyleBackColor = true;
             this.btnSavePath.Click += new System.EventHandler(this.btnSavePath_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.Location = new System.Drawing.Point(308, 41);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(538, 479);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // loadButton
+            // 
+            this.loadButton.Location = new System.Drawing.Point(278, 2);
+            this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size(98, 23);
+            this.loadButton.TabIndex = 7;
+            this.loadButton.Text = "Load..";
+            this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadImageButton);
+            // 
+            // img2greyscale1
+            // 
+            this.img2greyscale1.Location = new System.Drawing.Point(382, 2);
+            this.img2greyscale1.Name = "img2greyscale1";
+            this.img2greyscale1.Size = new System.Drawing.Size(98, 23);
+            this.img2greyscale1.TabIndex = 8;
+            this.img2greyscale1.Text = "img2grey1";
+            this.img2greyscale1.UseVisualStyleBackColor = true;
+            this.img2greyscale1.Click += new System.EventHandler(this.img2GreyscaleButton);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 310);
+            this.ClientSize = new System.Drawing.Size(858, 532);
+            this.Controls.Add(this.img2greyscale1);
+            this.Controls.Add(this.loadButton);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSavePath);
             this.Controls.Add(this.txtSavePath);
             this.Controls.Add(this.groupBox1);
@@ -190,6 +226,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,6 +249,9 @@
         private System.Windows.Forms.TextBox txtSavePath;
         private System.Windows.Forms.Button btnSavePath;
         private System.Windows.Forms.FolderBrowserDialog savePathBrowser;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button loadButton;
+        private System.Windows.Forms.Button img2greyscale1;
     }
 }
 
