@@ -45,7 +45,8 @@
             this.savePathBrowser = new System.Windows.Forms.FolderBrowserDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.loadButton = new System.Windows.Forms.Button();
-            this.img2greyscale1 = new System.Windows.Forms.Button();
+            this.img2Greyscale = new System.Windows.Forms.Button();
+            this.img2Sephia = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -199,22 +200,37 @@
             this.loadButton.UseVisualStyleBackColor = true;
             this.loadButton.Click += new System.EventHandler(this.loadImageButton);
             // 
-            // img2greyscale1
+            // img2Greyscale
             // 
-            this.img2greyscale1.Location = new System.Drawing.Point(382, 2);
-            this.img2greyscale1.Name = "img2greyscale1";
-            this.img2greyscale1.Size = new System.Drawing.Size(98, 23);
-            this.img2greyscale1.TabIndex = 8;
-            this.img2greyscale1.Text = "img2grey1";
-            this.img2greyscale1.UseVisualStyleBackColor = true;
-            this.img2greyscale1.Click += new System.EventHandler(this.img2GreyscaleButton);
+            this.img2Greyscale.Enabled = false;
+            this.img2Greyscale.Location = new System.Drawing.Point(382, 2);
+            this.img2Greyscale.Name = "img2Greyscale";
+            this.img2Greyscale.Size = new System.Drawing.Size(98, 23);
+            this.img2Greyscale.TabIndex = 8;
+            this.img2Greyscale.Text = "Greyscale";
+            this.img2Greyscale.UseVisualStyleBackColor = true;
+            this.img2Greyscale.Click += new System.EventHandler(this.img2GreyscaleButton);
+            this.img2Greyscale.MouseUp += new System.Windows.Forms.MouseEventHandler(this.img2greyscale1_MouseUp);
+            // 
+            // img2Sephia
+            // 
+            this.img2Sephia.Enabled = false;
+            this.img2Sephia.Location = new System.Drawing.Point(486, 2);
+            this.img2Sephia.Name = "img2Sephia";
+            this.img2Sephia.Size = new System.Drawing.Size(98, 23);
+            this.img2Sephia.TabIndex = 9;
+            this.img2Sephia.Tag = "img2Sephia";
+            this.img2Sephia.Text = "Sephia";
+            this.img2Sephia.UseVisualStyleBackColor = true;
+            this.img2Sephia.Click += new System.EventHandler(this.img2Sephia_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 532);
-            this.Controls.Add(this.img2greyscale1);
+            this.Controls.Add(this.img2Sephia);
+            this.Controls.Add(this.img2Greyscale);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSavePath);
@@ -251,7 +267,8 @@
         private System.Windows.Forms.FolderBrowserDialog savePathBrowser;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button loadButton;
-        private System.Windows.Forms.Button img2greyscale1;
+        private System.Windows.Forms.Button img2Greyscale;
+        private System.Windows.Forms.Button img2Sephia;
     }
 }
 

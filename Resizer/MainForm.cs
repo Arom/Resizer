@@ -19,9 +19,12 @@ namespace Resizer
         string file;
         Resize resize;
         Img2Greyscale img2grey;
+        Img2Sephia img2sephia;
         string savePath;
         Image img;
-        
+        int greyscaleMode=1;
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,6 +37,7 @@ namespace Resizer
         {
             resize = new Resize();
             img2grey = new Img2Greyscale();
+            img2sephia = new Img2Sephia();
         }
 
         private bool isNumber(string text)
@@ -113,14 +117,40 @@ namespace Resizer
                 file = fileBrowser.FileName;
                 img = Image.FromFile(file);
                 pictureBox1.Image = img;
+                img2Greyscale.Enabled = true;
+                img2Sephia.Enabled = true;
             }
 
         }
 
         private void img2GreyscaleButton(object sender, EventArgs e)
         {
-            img=img2grey.Convert(img);
+      
+            img=img2grey.ConvertImage(img,greyscaleMode);
             pictureBox1.Image = img;
         }
+     
+
+        private void img2greyscale1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                using (GreyscaleDialog dialog = new GreyscaleDialog(greyscaleMode))
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    greyscaleMode = dialog.greyscaleMode;
+                }
+            }
+            }
+        }
+
+        private void img2Sephia_Click(object sender, EventArgs e)
+        {
+            img = img2sephia.ConvertImage(img);
+            pictureBox1.Image = img;
+        }
+
+
     }
 }
